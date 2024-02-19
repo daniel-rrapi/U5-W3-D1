@@ -1,9 +1,9 @@
 package it.danielrrapi.U5W3D1.controllers;
 
-import it.danielrrapi.U5W2D5.entities.Dipendente;
-import it.danielrrapi.U5W2D5.exceptions.BadRequestException;
-import it.danielrrapi.U5W2D5.payloads.NewDipendenteDTO;
-import it.danielrrapi.U5W2D5.servicies.DipendenteService;
+import it.danielrrapi.U5W3D1.entities.Dipendente;
+import it.danielrrapi.U5W3D1.exceptions.BadRequestException;
+import it.danielrrapi.U5W3D1.payloads.NewDipendenteDTO;
+import it.danielrrapi.U5W3D1.servicies.DipendenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -56,10 +56,7 @@ public class DipendentiController {
         this.dipendenteService.findByIdAndDelete(id);
     }
 
-    @PostMapping("/{id}/upload")
-    public String uploadAvatar(@RequestParam("avatar") MultipartFile image, @PathVariable int id) throws IOException {
-        return this.dipendenteService.uploadImage(image, id);
-    }
+
 
 
 }

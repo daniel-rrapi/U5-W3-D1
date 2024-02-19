@@ -1,12 +1,11 @@
 package it.danielrrapi.U5W3D1.servicies;
 
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
-import it.danielrrapi.U5W2D5.entities.Dipendente;
-import it.danielrrapi.U5W2D5.exceptions.BadRequestException;
-import it.danielrrapi.U5W2D5.exceptions.NotFoundException;
-import it.danielrrapi.U5W2D5.payloads.NewDipendenteDTO;
-import it.danielrrapi.U5W2D5.repositories.DipendenteDAO;
+
+import it.danielrrapi.U5W3D1.entities.Dipendente;
+import it.danielrrapi.U5W3D1.exceptions.BadRequestException;
+import it.danielrrapi.U5W3D1.exceptions.NotFoundException;
+import it.danielrrapi.U5W3D1.payloads.NewDipendenteDTO;
+import it.danielrrapi.U5W3D1.repositories.DipendenteDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,8 +20,6 @@ import java.io.IOException;
 public class DipendenteService {
     @Autowired
     private DipendenteDAO dipendenteDAO;
-    @Autowired
-    private Cloudinary cloudinaryUploader;
 
     public Page<Dipendente> getDipendenti(int pageNumber, int size, String orderBy) {
         if (size > 100) size = 100;
@@ -34,7 +31,7 @@ public class DipendenteService {
         dipendenteDAO.findByEmail(payload.email()).ifPresent(dipendente -> {
             throw new BadRequestException("L'email " + payload.email() + " è gia in uso!");
         });
-        Dipendente newDipendente = new Dipendente(payload.username(), payload.name(), payload.cognome(), payload.email());
+        Dipendente newDipendente = new Dipendente(payload.username(), payload.name(), payload.cognome(), payload.email(), payload.password());
         return dipendenteDAO.save(newDipendente);
     }
 
@@ -50,11 +47,9 @@ public class DipendenteService {
         dipendenteDAO.delete(found);
     }
 
-    public String uploadImage(MultipartFile image, int id) throws IOException {
-        String url = (String) cloudinaryUploader.uploader().upload(image.getBytes(), ObjectUtils.emptyMap()).get("url");
-        Dipendente dipendente = this.findById(id);
-        dipendente.setProfilePicUrl(url);
-        this.findByIdAndUpdate(id, dipendente);
-        return url;
+    public Dipendente findByEmail(String email) {
+        return dipendenteDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("email " + email + "non trovata"));
     }
+
+
 }

@@ -1,10 +1,11 @@
 package it.danielrrapi.U5W3D1.servicies;
 
 
-import it.danielrrapi.U5W2D5.entities.Dispositivo;
-import it.danielrrapi.U5W2D5.exceptions.NotFoundException;
-import it.danielrrapi.U5W2D5.payloads.NewDispositivoDTO;
-import it.danielrrapi.U5W2D5.repositories.DispositivoDAO;
+import it.danielrrapi.U5W3D1.entities.Dispositivo;
+import it.danielrrapi.U5W3D1.exceptions.NotFoundException;
+import it.danielrrapi.U5W3D1.payloads.NewDispositivoDTO;
+import it.danielrrapi.U5W3D1.repositories.DispositivoDAO;
+import it.danielrrapi.U5W3D1.repositories.DispositivoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,9 +24,9 @@ public class DispositivoService {
         return dispositivoDAO.findAll(pageable);
     }
 
-    public Dispositivo save(NewDispositivoDTO payload) {
+    public Dispositivo save(Dispositivo payload) {
 //    Dispositivo newDispositivo = new Dispositivo(payload.type(), payload.status(),)
-        return this.dispositivoDAO.save()
+        return this.dispositivoDAO.save(payload);
     }
 
     public Dispositivo findById(long id) {

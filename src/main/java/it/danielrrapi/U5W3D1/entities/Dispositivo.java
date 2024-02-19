@@ -1,7 +1,7 @@
 package it.danielrrapi.U5W3D1.entities;
 
-import it.danielrrapi.U5W2D5.enums.DispositivoStatus;
-import it.danielrrapi.U5W2D5.enums.DispositivoType;
+import it.danielrrapi.U5W3D1.enums.DispositivoStatus;
+import it.danielrrapi.U5W3D1.enums.DispositivoType;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,9 +1,9 @@
 package it.danielrrapi.U5W3D1.controllers;
 
-import it.danielrrapi.U5W2D5.entities.Dispositivo;
-import it.danielrrapi.U5W2D5.exceptions.BadRequestException;
-import it.danielrrapi.U5W2D5.payloads.NewDispositivoDTO;
-import it.danielrrapi.U5W2D5.servicies.DispositivoService;
+import it.danielrrapi.U5W3D1.entities.Dispositivo;
+import it.danielrrapi.U5W3D1.exceptions.BadRequestException;
+import it.danielrrapi.U5W3D1.payloads.NewDispositivoDTO;
+import it.danielrrapi.U5W3D1.servicies.DispositivoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -32,7 +32,7 @@ public class DispositivoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Dispositivo saveDispositivo(@RequestBody @Validated NewDispositivoDTO dispositivo, BindingResult valutation) {
+    public Dispositivo saveDispositivo(@RequestBody  Dispositivo dispositivo, BindingResult valutation) {
         if (valutation.hasErrors()) {
             throw new BadRequestException(valutation.getAllErrors());
         }

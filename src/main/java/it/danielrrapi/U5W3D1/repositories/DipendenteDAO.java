@@ -1,6 +1,6 @@
 package it.danielrrapi.U5W3D1.repositories;
 
-import it.danielrrapi.U5W2D5.entities.Dipendente;
+import it.danielrrapi.U5W3D1.entities.Dipendente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
