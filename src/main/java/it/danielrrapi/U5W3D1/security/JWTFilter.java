@@ -40,7 +40,7 @@ public class JWTFilter extends OncePerRequestFilter {
         jwtTools.verifyToken(accessToken);
 
         String id = jwtTools.extractIdFromToken(accessToken);
-        Dipendente dipendente = dipendenteService.findById(Long.getLong(id));
+        Dipendente dipendente = dipendenteService.findById(Long.parseLong(id));
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(dipendente, null);
         SecurityContextHolder.getContext().setAuthentication(authentication);
